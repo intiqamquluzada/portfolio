@@ -9,10 +9,12 @@ SOCIAL_CHOICES = (
     ("tiktok", "Tiktok"),
     ("telegram", "Telegram"),
     ("linkedin", "linkedin"),
+    ("github", "GitHub"),
 
 )
 
 class About(models.Model):
+    image = models.ImageField(upload_to="media/", null=True, blank=True)
     name = models.CharField(max_length=255, verbose_name="Ad")
     surname = models.CharField(max_length=255, verbose_name="Soyad")
     location = models.CharField(max_length=255, verbose_name="Ünvan")
@@ -73,6 +75,11 @@ class Education(models.Model):
 class Awards(models.Model):
     name = models.CharField(max_length=255, verbose_name="Adı")
     date = models.CharField(max_length=255, verbose_name="Tarix")
+
+    created_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    active = models.BooleanField(default=False)
 
 
 class Interest(models.Model):
